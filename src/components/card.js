@@ -5,7 +5,9 @@ export function createCard(userId, item, { deleteCard, likeCard, imageClick }) {
     const cardTitle = cardElement.querySelector('.card__title');
     const cardImage = cardElement.querySelector('.card__image');
     const cardLike = cardElement.querySelector('.card__like-button');
+    const cardDisLike = cardElement.querySelector('.card__dislike-button');
     const cardLikeCount = cardElement.querySelector('.card__like-count');
+    const cardDisLikeCount = cardElement.querySelector('.card__like-count');
 
     if (userId !== item.owner._id) {
         cardElement.removeChild(cardDeleteButton);
@@ -15,6 +17,7 @@ export function createCard(userId, item, { deleteCard, likeCard, imageClick }) {
     cardImage.src = item.link;
     cardImage.alt = item.name;
     cardLikeCount.textContent = item.likes.length;
+    cardDisLikeCount.textContent = item.dislikes.length;
 
     if (item.likes.some(like => like._id === userId)) {
         cardLike.classList.add('card__like-button_is-active');
@@ -24,6 +27,7 @@ export function createCard(userId, item, { deleteCard, likeCard, imageClick }) {
 
     cardDeleteButton.addEventListener('click', () => deleteCard(item._id, cardElement));
     cardLike.addEventListener('click', () => likeCard(item, cardLike, cardLikeCount));
+    cardDisLike.addEventListener('click', () => dislikeCard(item, cardDisLike, cardDisLikeCount));
     cardImage.addEventListener('click', () => {
         imageClick(cardImage.src, cardImage.alt);
     });
