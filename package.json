@@ -12,8 +12,9 @@
   "author": "Makeeva Anastasiia",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.26.0",
-    "@babel/preset-env": "^7.26.0",
+    "@babel/core": "^7.27.4",
+    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-react": "^7.27.1",
     "01": "^0.0.1",
     "autoprefixer": "^10.4.20",
     "babel-loader": "^9.2.1",
@@ -24,7 +25,7 @@
     "html-webpack-plugin": "^5.6.3",
     "mini-css-extract-plugin": "^2.9.2",
     "postcss-loader": "^8.1.1",
-    "webpack": "^5.97.1",
+    "webpack": "^5.99.9",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.2.0"
   },

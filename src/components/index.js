@@ -172,26 +172,6 @@ async function likeCard(item, cardLike, cardLikeCount) {
     }
 }
 
-async function dislikeCard(item, cardLike, cardLikeCount) {
-    if (cardLike.classList.contains('card__dislike-button_is-active')) {
-        try {
-            const likeCount = await unSetDisLike(item._id);
-            cardLike.classList.remove('card__dislike-button_is-active');
-            cardLikeCount.textContent = likeCount.likes.length;
-        } catch (error) {
-            console.error('Ошибка при снятии дизлайка:', error);
-        }
-    } else {
-        try {
-            const likeCount = await setDisLike(item._id);   
-            cardLike.classList.add('card__dislike-button_is-active');
-            cardLikeCount.textContent = likeCount.likes.length;
-        } catch (error) {
-            console.error('Ошибка при установке дизлайка:', error);
-        }
-    }
-}
-
 function closeAllPopups() {
     const openedPopup = document.querySelector('.popup_is-opened');
     if (openedPopup) {
