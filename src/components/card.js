@@ -1,4 +1,26 @@
-export function createCard(userId, item, { deleteCard, likeCard, imageClick }) {
+import { setLike, unSetLike } from "./api.js";
+
+async function likeCard(item, cardLike, cardLikeCount) {
+    if (cardLike.classList.contains('card__like-button_is-active')) {
+        try {
+            const likeCount = await unSetLike(item._id);
+            cardLike.classList.remove('card__like-button_is-active');
+            cardLikeCount.textContent = likeCount.likes.length;
+        } catch (error) {
+            console.error('Ошибка при снятии лайка:', error);
+        }
+    } else {
+        try {
+            const likeCount = await setLike(item._id);   
+            cardLike.classList.add('card__like-button_is-active');
+            cardLikeCount.textContent = likeCount.likes.length;
+        } catch (error) {
+            console.error('Ошибка при установке лайка:', error);
+        }
+    }
+}
+
+export function createCard(userId, item, { deleteCard, imageClick }) {
     const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     const cardDeleteButton = cardElement.querySelector('.card__delete-button');

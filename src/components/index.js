@@ -51,7 +51,7 @@ addNewCardForm.addEventListener('submit', async function (evt) {
     const link = document.querySelector('[name="link"]').value;
     try {
         const newCard = await addNewCard(placeName, link);
-        cardContainer.prepend(createCard(newCard.owner._id, newCard, { deleteCard, likeCard, imageClick }));
+        cardContainer.prepend(createCard(newCard.owner._id, newCard, { deleteCard, imageClick }));
         closeAllPopups();
         addNewCardForm.reset();
     } catch (error) {
@@ -152,25 +152,6 @@ function deleteCard(cardId, cardElement) {
     };
 }
 
-async function likeCard(item, cardLike, cardLikeCount) {
-    if (cardLike.classList.contains('card__like-button_is-active')) {
-        try {
-            const likeCount = await unSetLike(item._id);
-            cardLike.classList.remove('card__like-button_is-active');
-            cardLikeCount.textContent = likeCount.likes.length;
-        } catch (error) {
-            console.error('Ошибка при снятии лайка:', error);
-        }
-    } else {
-        try {
-            const likeCount = await setLike(item._id);   
-            cardLike.classList.add('card__like-button_is-active');
-            cardLikeCount.textContent = likeCount.likes.length;
-        } catch (error) {
-            console.error('Ошибка при установке лайка:', error);
-        }
-    }
-}
 
 function closeAllPopups() {
     const openedPopup = document.querySelector('.popup_is-opened');
@@ -188,7 +169,7 @@ async function showCards(user, initialCards) {
     }
 
     initialCards.forEach(item => {
-        cardContainer.append(createCard(user._id, item, { deleteCard, likeCard, imageClick }));
+        cardContainer.append(createCard(user._id, item, { deleteCard, imageClick }));
     });
 }
 
