@@ -84,8 +84,6 @@ editProfileForm.addEventListener('submit', async function (evt) {
     const inputName = document.querySelector('[name="name"]');
     const currentAvatar = document.querySelector('.avatar-image');
     const inputDescription = document.querySelector('[name="description"]');
-    let currentName = document.querySelector('.profile__title');
-    let currentDescription = document.querySelector('.profile__description');
     try {
         await updateUserData(inputName.value, currentAvatar.src, inputDescription.value);
         currentName.textContent = inputName.value;
